@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 -- |
 -- This module reexports the non-conflicting definitions from
 -- the modules exported by this package,
@@ -13,7 +14,11 @@ where
 
 -- base-prelude
 -------------------------
+#if !MIN_VERSION_base(4,10,0)
 import BasePrelude as Exports hiding (fail, Alt, first, second)
+#else
+import BasePrelude as Exports hiding (fail, Alt, first, second, fromLeft, fromRight)
+#endif
 
 -- base
 -------------------------
